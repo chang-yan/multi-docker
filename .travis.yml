@@ -4,18 +4,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t jasonwu/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t xm0404/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true jasonwu/react-test npm test
+  - docker run -e CI=true xm0404/react-test npm test
 
 after_success:
-  - docker build -t jasonwu/multi-client ./client
-  - docker build -t jasonwu/multi-nginx ./nginx
-  - docker build -t jasonwu/multi-server ./server
-  - docker build -t jasonwu/multi-worker ./worker
+  - docker build -t xm0404/multi-client ./client
+  - docker build -t xm0404/multi-nginx ./nginx
+  - docker build -t xm0404/multi-server ./server
+  - docker build -t xm0404/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push jasonwu/multi-client
-  - docker push jasonwu/multi-nginx
-  - docker push jasonwu/multi-server
-  - docker push jasonwu/multi-worker
+  - docker push xm0404/multi-client
+  - docker push xm0404/multi-nginx
+  - docker push xm0404/multi-server
+  - docker push xm0404/multi-worker
